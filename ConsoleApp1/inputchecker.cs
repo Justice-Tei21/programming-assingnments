@@ -1,19 +1,19 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 public class Inputchecker
 {
 
 	string input;
+	string password;
 
 
-	bool isvalidpassword;
+	
 	public Inputchecker()
 	{
 		Console.WriteLine("Enter password");
 		ReadInput();
-
-
-
+		Checkpassword();
 	}
 
 	private void ReadInput()
@@ -23,8 +23,25 @@ public class Inputchecker
 
 	private void Checkpassword()
 	{
-		string pattern = @"(){4,20}";
+		const string pattern = @"(){4,20}";
 
+		Regex rg = new Regex(pattern);
+		try {
+		if (rg.IsMatch(input))
+		{
+				password = input;
+		}
+
+		else
+		{
+            throw new Exception(" ");
+        }
+
+
+
+		 }
+		catch {
+		}
 	}
 
 }
