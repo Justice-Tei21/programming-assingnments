@@ -1,95 +1,103 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-public class Inputchecker
+
+
+namespace floating
 {
-
-	string input="";
-	string password="";
-
-	bool loggedin = false;
-
-	string Password {
-		get { if(loggedin)return password; return ""; } 
-		 }
-	enum options {INVALIDPASS,VALIDPASS,INVALIDMAIL,VALIDMAIL}
-
-
-	
-	public Inputchecker()
+	public class Inputchecker
 	{
-		Console.WriteLine("Enter password");
-		ReadInput();
-		Checkpassword();
-	}
 
-	private void ReadInput()
-	{
-		input=Console.ReadLine();
-	}
+		string input = "";
+		string password = "";
+		string email = "";
 
+		bool loggedin = false;
 
-	// will use this part to check some more advanced concepts
-	private void Checkpassword()
-	{
-		if (string.IsNullOrEmpty(input))
+		string Password
 		{
-			Console.WriteLine("absoulte waste of space G\nA\nR\nB\nA\nG\nE\n");
-			input = "";
-
-        }
-        const string passwordv = @"[\w\%\&\?\#\¤\.\~\^]{4,20}";
-        const string emailv = @"^[\w-\.]+@[\w-]+\.[a-Z]{2,4}$";
-
-        Regex validpass = new Regex(passwordv);
-		Regex validemailv = new Regex(emailv);
+			get { if (loggedin) return password; return ""; }
+		}
+		enum options { INVALIDPASS, VALIDPASS, VALIDMAIL, INVALIDMAIL }
 
 
 
-		try
+		public Inputchecker()
 		{
+			Console.WriteLine("Enter password and email");
+			input=ReadInput();
+			email=ReadInput();
+			Checkpassword();
+		}
 
-			
-			
+		private string ReadInput()
+		{
+			return Console.ReadLine();
+		}
 
-			int a=(validpass.IsMatch(input) ? (int)options.VALIDPASS:(int)options.INVALIDPASS );
-            int B = (validemailv.IsMatch(input) ? (int)options.VALIDMAIL : (int)options.INVALIDMAIL);
+
+		// will use this part to check some more advanced concepts
+		private void Checkpassword()
+		{
+			if (string.IsNullOrEmpty(input))
+			{
+				Console.WriteLine("absoulte waste of space G\nA\nR\nB\nA\nG\nE\n");
+				input = "";
+
+			}
+			string passwordv = @"[\w\%\&\?\#\¤\.\~\^]{4,20}";
+			string emailv = @"^[\w-]+@[\w-]+\.[A-z]{2,4}$";
+
+			Regex validpass = new Regex(passwordv);
+			Regex validemailv = new Regex(emailv);
 
 
-            switch (a)
+
+			try
 			{
 
-				case (int)options.VALIDPASS:
-					password = input;
-					Console.WriteLine("password is accepted");
-					break;
-
-				case (int)options.INVALIDPASS:
-					{
-						throw new Exception("password is invalid");
 
 
 
-					}
-				default:
-					Console.WriteLine("what did you write to get this message?");
-					break;
+				int a = (validpass.IsMatch(input) ? (int)options.VALIDPASS : (int)options.INVALIDPASS);
+				int B = (validemailv.IsMatch(email) ? (int)options.VALIDMAIL : (int)options.INVALIDMAIL);
+				
+
+				switch (a)
+				{
+
+					case (int)options.VALIDPASS:
+						password = input;
+						Console.WriteLine("password is accepted");
+						break;
+
+					case (int)options.INVALIDPASS:
+						{
+							throw new Exception("password is invalid");
+
+
+
+						}
+					default:
+						Console.WriteLine("what did you write to get this message?");
+						break;
+				}
+
+
+				if (B - 2 == 0) {  throw new Exception("email invalides"); }
+				else Console.WriteLine("please verify your email");
+
+
+
+			}
+			catch
+			{
+
+				Console.WriteLine("please exit the program");
+
 			}
 
-
-			if (B - 2 == 0)
-				Console.WriteLine("email invalid");
-			else Console.WriteLine("please verify your email");
-
-
-
 		}
-		catch {
 
-			Console.WriteLine("please exit the program");
-		
-		}
-	
 	}
-
 }
