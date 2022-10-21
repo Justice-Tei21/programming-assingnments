@@ -41,7 +41,7 @@ namespace floating
 		{
 			if (string.IsNullOrEmpty(input))
 			{
-				Console.WriteLine("absoulte waste of space G\nA\nR\nB\nA\nG\nE\n");
+				Console.WriteLine("absoulte waste of space \nG\nA\nR\nB\nA\nG\nE\n");
 				input = "";
 
 			}
@@ -84,8 +84,8 @@ namespace floating
 				}
 
 
-				if (B - 2 == 0) {  throw new Exception("email invalides"); }
-				else Console.WriteLine("please verify your email");
+				if (B - 2 == 0) {password="";email="";  throw new Exception("email invalid"); }
+				else {Console.WriteLine("please verify your email");}
 
 
 
