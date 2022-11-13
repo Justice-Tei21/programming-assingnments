@@ -28,5 +28,13 @@ namespace animalia
 			name=newname;
 		}
 
-	}
+        public virtual string Animalsound()
+		{
+			string sound = "sound of animal";
+			Console.WriteLine(sound);
+			return sound;
+		}
+
+
+    }
 }

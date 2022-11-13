@@ -17,9 +17,11 @@ namespace animalia
         }
 
 
-        public string Bark()
+        public override string Animalsound()
         {
+            for(int i = 0; i < 10; i++)
             Console.WriteLine("bork");
+
             return "bark";
         }
 
